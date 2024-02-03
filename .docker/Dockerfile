@@ -1,6 +1,9 @@
 # Use an official Node.js runtime as a parent image
 FROM node:18
 
+# Install nodemon
+RUN npm install --global nodemon
+
 # Set the working directory to /app
 WORKDIR /app
 
@@ -8,7 +11,7 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install app dependencies
-RUN yarn install
+RUN npm install
 
 # Bundle app source
 COPY . .
@@ -17,7 +20,6 @@ COPY . .
 EXPOSE 3000
 
 # Define environment variable
-# ENV NODE_ENV production
 
 # Run your application
-CMD ["yarn", "run", "dev"]
+CMD ["npm", "run", "dev"]
